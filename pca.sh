@@ -1,7 +1,7 @@
 #!/bin/bash
 #$ -cwd           # Set the working directory for the job to the current directory
 #$ -pe smp 4      # Request 4 core
-#$ -l h_rt= 10:0:0  # Request 1 hour runtime
+#$ -l h_rt= 5:0:0  # Request 5 hour runtime
 #$ -l h_vmem=4G   # Request 4GB
 #$ -m ea          # Send an email at the end (e) and if the job is aborted (a)
 #$ -M bty647@qmul.ac.uk

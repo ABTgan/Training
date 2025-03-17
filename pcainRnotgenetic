@@ -1,0 +1,38 @@
+install.packages("corrr")
+install.packages("ggcorrplot")
+install.packages("FactoMineR")
+install.packages("factoextra")
+library('corrr')
+library(ggcorrplot)
+library("FactoMineR")
+library(factoextra)
+
+
+getwd()
+
+#data
+protein_data <- read.csv("protein_data.csv")
+str(protein_data)
+
+#normalisin and getting rid of extra data
+numerical_data <- protein_data[, -1]
+head(numerical_data)
+
+data_normalized <- scale(numerical_data)
+head(data_normalized)
+
+data_normalized_transposed <- t(data_normalized)
+
+#data.pca <- princomp(data_normalized)
+data.pca <- prcomp(data_normalized)
+summary(data.pca)
+
+
+fviz_eig(data.pca, addlabels = TRUE)
+# Graph of the variables
+fviz_pca_var(data.pca, col.var = "black")
+fviz_cos2(data.pca, choice = "var", axes = 1:2)
+
+fviz_pca_var(data.pca, col.var = "cos2",
+             gradient.cols = c("black", "red", "orange", "yellow","green"),
+             repel = TRUE)
